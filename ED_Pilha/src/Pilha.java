@@ -53,36 +53,96 @@ public class Pilha<E> {
         }
 
         // Agora insere na pilha atual, preservando a ordem da original
-        while(!auxPilha.isEmpty()){
+        while (!auxPilha.isEmpty()) {
             this.push(auxPilha.pop());
         }
     }
 
-    public int obterNumeroItens(){
-        if(isEmpty()){return 0;}
+    public int obterNumeroItens() {
+        if (isEmpty()) {
+            return 0;
+        }
         Celula<E> aux = this.topo;
         int cont = 0;
 
-        while(aux != fundo){ //Para no fundo (sentinela)
-            cont ++;
+        while (aux != fundo) { // Para no fundo (sentinela)
+            cont++;
             aux = aux.getProximaCelula();
 
         }
         return cont;
     }
 
-    public void inverter(){
-        if(isEmpty()){ return ;}
-
-        Pilha<E> pilhaAux = new Pilha<>();
-        
-
-        while(!this.isEmpty()){
-           pilhaAux.push(this.pop());
+    public void inverter() {
+        if (isEmpty()) {
+            return;
         }
 
-        while(!pilhaAux.isEmpty()){
+        Pilha<E> pilhaAux = new Pilha<>();
+
+        while (!this.isEmpty()) {
+            pilhaAux.push(this.pop());
+        }
+
+        while (!pilhaAux.isEmpty()) {
             this.push(pilhaAux.pop());
+        }
+    }
+
+    public boolean verificaExistencia(E item) {
+        if (isEmpty()) {
+            return false;
+        }
+        Celula<E> aux = this.topo;
+
+        while (aux != null) {
+            if (aux.getItem().equals(item)) {
+                return true;
+            }
+            aux = aux.getProximaCelula();
+        }
+
+        return false;
+    }
+
+    public void removerItem(E item) {
+        if (isEmpty()) {
+            return;
+        }
+
+        Pilha<E> auxPilha = new Pilha<>();
+
+        while (!this.isEmpty()) {
+            E atual = this.pop();
+            if (!atual.equals(item)) {
+                auxPilha.push(atual); // Guarda somente os diferentes
+            }
+
+        }
+
+        // Recoloca os itens de volta na pilha original, restaurando a ordem
+        while (!auxPilha.isEmpty()) {
+            this.push(auxPilha.pop());
+        }
+
+    }
+
+    public void imprimir() {
+        if (isEmpty()) {
+            System.out.println("⚠️ Pilha vazia.");
+            return;
+        }
+
+        Pilha<E> auxPilha = new Pilha<>();
+
+        while (!this.isEmpty()) {
+            E item = this.pop();
+            auxPilha.push(item);
+            System.out.println(item);
+        }
+
+        while (!auxPilha.isEmpty()) {
+            this.push(auxPilha.pop());
         }
     }
 
