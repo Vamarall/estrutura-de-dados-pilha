@@ -1,3 +1,5 @@
+import java.util.function.Predicate;
+
 public class Pilha<E> {
 
     private Celula<E> fundo;
@@ -56,6 +58,40 @@ public class Pilha<E> {
         while (!auxPilha.isEmpty()) {
             this.push(auxPilha.pop());
         }
+    }
+
+    public E item(Predicate<E> condicional){
+        if (isEmpty()) {
+            return null;
+        }
+        Celula<E> aux = this.topo;
+        while(aux != null){
+            if(condicional.test(aux.getItem())){
+                return aux.getItem();
+            }
+            aux = aux.getProximaCelula();
+        }
+        return null;
+    }
+
+    public int quantosAFrente(E item){
+        if (isEmpty()) {
+            return 0;
+        }
+
+        Celula<E> aux = this.topo;
+        int cont = 0;
+
+        while(aux != fundo){
+            if(aux.getItem().equals(item)){
+                return cont;
+            }
+            aux = aux.getProximaCelula();
+            cont ++;
+        }
+
+        return -1;
+
     }
 
     public int obterNumeroItens() {

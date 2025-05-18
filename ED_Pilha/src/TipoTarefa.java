@@ -5,5 +5,5 @@ public enum TipoTarefa {
     SAUDE,
     CASA,
     PROJETO,
-    OUTROS;
+    OUTROS, FINANCEIRA;
 }

@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 
+
 public class Tarefa {
 
     private String nomeTarefa;
@@ -18,7 +19,7 @@ public class Tarefa {
         this.dataCriacao = dataCriacao;
         this.prioridade = prioridade;
     }
-
+    
     public String getNomeTarefa() {
         return nomeTarefa;
     }
@@ -72,8 +73,5 @@ public class Tarefa {
         return "Tarefa [nomeTarefa=" + nomeTarefa + ", tipoTarefa=" + tipoTarefa + ", descTarefa=" + descTarefa
                 + ", dataCriacao=" + dataCriacao + ", prioridade=" + prioridade + "]";
     }
-
-    
-
 
 }
